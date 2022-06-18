@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -36,31 +36,52 @@ import {
 
 const Animation=()=>{
 
-  const c="50";
-  const y="50";
-  const radius="25";
+  const c="10%";
+  const y="20%";
+  const radius="700";
   const color="white"
-  const stroke="yellow"
+  const stroke="red"
+  const strokeWidth=9;
+  const speed=20000;
+const circumference=2*Math.PI*radius;
+const halfCircle=radius+strokeWidth;
+const  [percent,setPercent]=useState(1);
 
+useEffect(()=>{
+  let id;
+// setInterval(()=>{
+//  id=setPercent((pre)=>{
+//   if(pre==10)return 1;
+//   return pre+1;
+// })
+// },speed)
+
+return ()=>{
+clearInterval(id);
+}
+},[])
   return(
     <View style={{borderWidth:2,borderColor:'black',width:"100%",height:"100%"}}>
       
-     <Svg height="50%" width="50%" viewBox="0 0 100 100">
+     <Svg height={radius*2} width={radius*2} viewBox={`0 0  ${halfCircle*2} ${halfCircle*2}` } >
           <Circle
             cx={c}
             cy={y}
             r={radius}
             stroke={stroke}
-            strokeWidth="2.5"
+            strokeWidth={strokeWidth}
             fill={color}
+            strokeOpacity="0.2"
           />
           <Circle
             cx={c}
             cy={y}
             r={radius}
             stroke={stroke}
-            strokeWidth="2.5"
+            strokeWidth={strokeWidth}
             fill={color}
+          strokeDasharray={circumference}
+          strokeDashoffset={circumference/3}
           />
 
           {/* <Rect
