@@ -27,7 +27,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Animation from './src/AnimationIndex';
- 
+ import CardList from './src/CardList';
 const Section: React.FC<{
   title: string;
 }> = ({children, title}) => {
@@ -49,7 +49,7 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Animation></Animation>
+       <CardList></CardList>
     </SafeAreaView>
   );
 };

@@ -86,7 +86,6 @@ clearInterval(id);
             strokeWidth={strokeWidth}
             fill="transparent"
             strokeOpacity="0.2"
-            
           ></Circle>
            
           <Circle
