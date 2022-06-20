@@ -49,7 +49,7 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-       <CardList></CardList>
+        <Animation></Animation>
     </SafeAreaView>
   );
 };

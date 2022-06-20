@@ -45,15 +45,18 @@ const Animation=()=>{
   const speed=60;
 const circumference=2*Math.PI*radius;
 const halfCircle=radius+strokeWidth;
-const  [percent,setPercent]=useState(5);
+const  [percent,setPercent]=useState(0);
 
 
 
-
+console.log("DEBUG","----")
 useEffect(()=>{
   let id;
-setInterval(()=>{
- id=setPercent((pre)=>{
+  console.log("DEBUG","--dfdfd--")
+id=setInterval(()=>{
+  setPercent((pre)=>{
+    console.log("DEBUG","--frerer--")
+
   if(pre==100){
      clearInterval(id)
     return 1;
@@ -100,15 +103,7 @@ clearInterval(id);
           strokeLinecap="round"
           />
         </G>
-          {/* <Rect
-            x="15"
-            y="15"
-            width="70"
-            height="70"
-            stroke="red"
-            strokeWidth="2"
-            fill="yellow"
-          /> */}
+           
         </Svg>
     </View>
 
