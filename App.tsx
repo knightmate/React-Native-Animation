@@ -10,6 +10,7 @@
 
 import React from 'react';
 import {
+  PointPropType,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -28,16 +29,18 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Animation from './src/AnimationIndex';
  import CardList from './src/CardList';
-const Section: React.FC<{
-  title: string;
-}> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-       <Animation></Animation>
-    </View>
-  );
-};
+ import {Picker} from '@react-native-picker/picker'
+
+// const Section: React.FC<{
+//   title: string;
+// }> = ({children, title}) => {
+//   const isDarkMode = useColorScheme() === 'dark';
+//   return (
+//     <View style={styles.sectionContainer}>
+//        <Animation></Animation>
+//     </View>
+//   );
+// };
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -49,7 +52,20 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <Animation></Animation>
+        {/* <Animation></Animation> */}
+        <Picker
+         itemStyle={{color:"red",borderStartColor:"red",backgroundColor:'red'}}
+  selectedValue={"Java"}
+  style={{height: 50, width: 100,}}
+     
+  onValueChange={(itemValue, itemIndex) =>
+    console.log("DEBUG")
+  }>
+    
+    <Picker.Item label="blue" color="blue" value="blue" style={{backgroundColor:'greens'}} />
+  <Picker.Item label="Java" value="java" />
+   
+</Picker>
     </SafeAreaView>
   );
 };
