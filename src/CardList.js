@@ -9,14 +9,19 @@ import {
   Text,
   useColorScheme,
   View,
-  Image,Animated
+  Image,Animated,
+  Dimensions
+   
 } from 'react-native';
  
- 
+const { width, height } = Dimensions.get('window');
+
 const cardListArr=new Array(5);
 //const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.74;
-
-   const SIZE=350;
+const ITEM_SIZE = Platform.OS === 'ios' ? width * 0.72 : width * 0.74;
+ const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
+const BACKDROP_HEIGHT = height * 0.65;
+  // const SIZE=450;
 const CardList=()=>{
     const [movies,setMovies]=useState([])
     const scrollX=React.useRef(new Animated.Value(0));
@@ -29,11 +34,12 @@ const CardList=()=>{
      
        },[])
      
-    return(
-        <View style={{width:SIZE}}> 
-        <Animated.FlatList
+     return(
+      <View style={{ height: BACKDROP_HEIGHT, width, }}>
+      <Animated.FlatList
          horizontal={true}
-            onScroll={Animated.event(
+            onScroll={
+              Animated.event(
             [{ nativeEvent: { contentOffset: { x: scrollX.current } } }],
             { useNativeDriver: false }
           )}
@@ -41,23 +47,23 @@ const CardList=()=>{
           snapToAlignment="start"
         renderItem={(item)=>{
             const index=item.index;
-            console.log("Item",item)
+             
             const inputRange = [
-                (index - 2) * SIZE,
-                (index - 1) * SIZE,
-                index * SIZE,
+                (index - 2) * ITEM_SIZE,
+                (index - 1) * ITEM_SIZE,
+                index * ITEM_SIZE,
               ];
               //inputRange: [index*SIZE-1, index*SIZE, index*SIZE+2],
             const translateY=scrollX.current.interpolate({
                 inputRange,
                 outputRange: [100, 50 ,100],
-                extrapolate: 'clamp',
+                
               })
-              console.log("DEBUG",'fdfdfdfd',translateY);
-            return <Card item={item} translateY={translateY} ></Card>
+              console.log("translateY",translateY);
+             return <Card item={item} translateY={translateY} ></Card>
         }}
         data={movies}
-        snapToInterval={SIZE}
+        snapToInterval={ITEM_SIZE}
         contentContainerStyle={{alignItems:"center"}}
        
        >
@@ -137,7 +143,7 @@ export const getMovies = async () => {
 
 const   posterImage= {
     width: '100%',
-    height:SIZE*1.2,
+    height:ITEM_SIZE*1.2,
     resizeMode: 'cover',
     borderRadius: 24,
     margin: 0,

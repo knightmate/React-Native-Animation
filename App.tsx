@@ -52,20 +52,8 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        {/* <Animation></Animation> */}
-        <Picker
-         itemStyle={{color:"red",borderStartColor:"red",backgroundColor:'red'}}
-  selectedValue={"Java"}
-  style={{height: 50, width: 100,}}
-     
-  onValueChange={(itemValue, itemIndex) =>
-    console.log("DEBUG")
-  }>
-    
-    <Picker.Item label="blue" color="blue" value="blue" style={{backgroundColor:'greens'}} />
-  <Picker.Item label="Java" value="java" />
-   
-</Picker>
+         <CardList/>
+       
     </SafeAreaView>
   );
 };
